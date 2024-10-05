@@ -22,7 +22,7 @@ def main(dataset_path = 'BigmacPrice.csv'):
 
     # Plot Big Mac prices over time globally
     plt.figure(figsize=(10,6))
-    sns.lineplot(x='date', y='dollar_price', data=dataset, hue='name')
+    sns.lineplot(x='date', y='dollar_price', data=dataset, hue='name', legend=False)
     plt.title('Big Mac Prices Over Time (2000-2022)')
     plt.xlabel('Year')
     plt.ylabel('Price in USD')
