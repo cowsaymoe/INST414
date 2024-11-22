@@ -2,7 +2,6 @@ import csv
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 
 def main():
@@ -48,11 +47,18 @@ def main():
     print(f"Top 10 most similar movies to {query3}:")
     print(top_similar_titanic)
 
-    # Graph
-    plt.figure(figsize=(10, 10))
-    sns.heatmap(similar_movies, annot=True, cmap='coolwarm')
-    plt.title('Cosine Similarity Between Movies')
+    # count the number of times a movie appears in the top 10 most similar movies
+    top_movies = pd.concat([top_similar_avatar, top_similar_avengars, top_similar_titanic])
+    top_movies = top_movies.groupby(top_movies.index).count()
+    
+    # plot the number of times a movie appears in the top 10 most similar movies
+    top_movies.plot(kind='bar')
+    plt.title('Number of times a movie appears in the top 10 most similar movies')
+    plt.ylabel('Count')
+    plt.xlabel('Movie')
     plt.show()
+
+
 
 def calculate_similarity(df):
     # Create feature vectors based on normalized columns
