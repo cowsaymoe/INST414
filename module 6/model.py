@@ -3,6 +3,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import StratifiedKFold, cross_val_predict
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import confusion_matrix
 
 def main():
     # Load the data
@@ -15,7 +16,7 @@ def main():
         data[column] = label_encoders[column].fit_transform(data[column])
 
     # Define features and target
-    X = data.drop(columns=['has_question', 'sentiment', 'has_number', 'title_length', 'log_karma'])
+    X = data.drop(columns=['has_question', 'sentiment', 'hour_sin', 'hour_cos'])
     y = data['final_score']
 
     # Convert continuous target to binary target
@@ -40,6 +41,13 @@ def main():
     print(f'Precision: {precision:.4f}')
     print(f'Recall: {recall:.4f}')
     print(f'F1 Score: {f1:.4f}')
+
+    # Identify and print 5 examples it predicted wrong
+    wrong_predictions = X[y != y_pred]
+    wrong_predictions['true_label'] = y[y != y_pred]
+    wrong_predictions['predicted_label'] = y_pred[y != y_pred]
+    print("\n5 Examples of Wrong Predictions:")
+    print(wrong_predictions.head(5))
 
 if __name__ == '__main__':
     main()
