@@ -1,0 +1,14 @@
+{
+  "imdb_id": "tt10872600",
+  "title": "Spider-Man: No Way Home",
+  "year": "2021",
+  "runtime": "148",
+  "genres": ["Action", "Adventure", "Fantasy"],
+  "actors": [
+    ["nm4043618", "Tom Holland"],
+    ["nm3918035", "Zendaya"],
+    ["nm1212722", "Benedict Cumberbatch"],
+    ["nm8188622", "Jacob Batalon"]
+  ],
+  "rating": { "avg": 8.2, "votes": 765214 }
+}
